@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <script src=https://code.jquery.com/jquery-3.7.1.min.js></script>
+    <title>로그인폼</title>
+</head>
+<body>
+
+<h1>회원가입</h1>
+<form action="/register" method="post" onsubmit="return validateForm()">
+    <label for="userId">아이디 :</label>
+    <input type="text" id="userId" name="userId" required><br>
+
+    <label for="userPassword">비밀번호 :</label>
+    <input type="password" id="userPassword" name="userPassword" required><br>
+
+    <label for="userPassword">비밀번호 확인 :</label>
+    <input type="password" id="confirmUserPassword" name="confirmUserPassword" required><br>
+
+    <label for="userName">이름 :</label>
+    <input type="text" id="userName" name="userName" required><br>
+
+    <label for="userName">닉네임 :</label>
+    <input type="text" id="nickName" name="nickName" required><br> 
+
+    <tr>
+        <label for="email_id" ><th scope="row">이메일 :</th></label>
+        <td>
+            <input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" placeholder="이메일" maxlength="18" /> @ 
+            <input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" placeholder="이메일 도메인" maxlength="18"/>
+            <select class="select" title="이메일 도메인 주소 선택" onclick="setEmailDomain(this.value);return false;">
+                <option value="">-선택-</option>
+                <option value="naver.com">naver.com</option>
+                <option value="gmail.com">gmail.com</option>
+                <option value="hanmail.net">hanmail.net</option>
+                <option value="nate.com">nate.com</option>
+                <option value="yahoo.com">yahoo.com</option>
+            </select>
+        </td>
+    </tr><br>
+
+    <label for="userPicture">프로필 사진 업로드 :</label>
+    <input type="file" id="userPicture" name="userPicture" required><br>
+
+    <label for="userMbti">MBTI :</label>
+    <input type="text" id="userMbti" name="userMbti" required><br>
+
+    <label for="birthday">생일 :</label>
+    <input type="date" id="birthday" name="birthday" required><br>
+
+    <button type="submit">회원가입</button>
+</form>
+
+<script> 
+    function validateForm() {
+        var email_id = document.getElementById("email_id").value;
+        var email_domain = document.getElementById("email_domain").value;
+        var mail = email_id + "@" + email_domain;
+        var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+        if (!email_id || !email_domain) {
+            alert("이메일을 입력해주세요");
+            return false;
+        }
+
+        if (!email_rule.test(mail)) {
+            alert("이메일을 형식에 맞게 입력해주세요.");
+            return false;
+        }
+
+        var userPassword = document.getElementById("userPassword").value;
+        var confirmUserPassword = document.getElementById("confirmUserPassword").value;
+
+        if (userPassword !== confirmUserPassword) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return false;
+        }
+
+        return true;
+    }
+
+    function setEmailDomain(domain) {
+        document.getElementById("email_domain").value = domain;
+    }
+</script>
+
+
+
+
+  
+</body>
+</html>
