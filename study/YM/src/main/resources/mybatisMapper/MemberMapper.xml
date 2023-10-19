@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.meeting_site_project.YM.mapper.MemberMapper">
+
+    <select id="getCnt2" resultType="Integer">
+        select count(*) from member
+    </select>
+
+    <insert id="insertMember" parameterType="JoinMember">
+        INSERT INTO member VALUES (#{userId}, #{userName}, #{userPicture}, #{userMbti}, #{userPassword}, '', 0, #{birthday}, #{nickName}, #{emailId}, #{emailDomain}, sysdate)
+    </insert>
+
+    <select id="selectById" resultType="member" parameterType="String">
+        SELECT * FROM member WHERE userID=#{userId}
+    </select>
+</mapper>

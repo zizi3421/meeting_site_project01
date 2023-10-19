@@ -8,7 +8,7 @@
 <body>
 
 <h1>회원가입</h1>
-<form action="/register" method="post" onsubmit="return validateForm()">
+<form action="/joinSuccess" method="post">
     <label for="userId">아이디 :</label>
     <input type="text" id="userId" name="userId" required><br>
 
@@ -22,13 +22,13 @@
     <input type="text" id="userName" name="userName" required><br>
 
     <label for="userName">닉네임 :</label>
-    <input type="text" id="nickName" name="nickName" required><br> 
+    <input type="text" id="nickName" name="nickName" required><br> <a href=""></a>
 
     <tr>
-        <label for="email_id" ><th scope="row">이메일 :</th></label>
+        <label for="emailId" ><th scope="row">이메일 :</th></label>
         <td>
-            <input type="text" id="email_id" class="form_w200" value="" title="이메일 아이디" placeholder="이메일" maxlength="18" /> @ 
-            <input type="text" id="email_domain" class="form_w200" value="" title="이메일 도메인" placeholder="이메일 도메인" maxlength="18"/>
+            <input type="text" id="emailId" name="emailId" class="form_w200" value="" title="이메일 아이디" placeholder="이메일" maxlength="18" /> @
+            <input type="text" id="emailDomain" name="emailDomain" class="form_w200" value="" title="이메일 도메인" placeholder="이메일 도메인" maxlength="18"/>
             <select class="select" title="이메일 도메인 주소 선택" onclick="setEmailDomain(this.value);return false;">
                 <option value="">-선택-</option>
                 <option value="naver.com">naver.com</option>
@@ -44,22 +44,22 @@
     <input type="file" id="userPicture" name="userPicture" required><br>
 
     <label for="userMbti">MBTI :</label>
-    <input type="text" id="userMbti" name="userMbti" required><br>
+    <input type="text" id="userMbti" name="userMbti"><br>
 
     <label for="birthday">생일 :</label>
     <input type="date" id="birthday" name="birthday" required><br>
 
-    <button type="submit">회원가입</button>
+    <button type="submit" onclick="return validateForm()">회원가입</button>
 </form>
 
 <script> 
     function validateForm() {
-        var email_id = document.getElementById("email_id").value;
-        var email_domain = document.getElementById("email_domain").value;
-        var mail = email_id + "@" + email_domain;
+        var emailId = document.getElementById("emailId").value;
+        var emailDomain = document.getElementById("emailDomain").value;
+        var mail = emailId + "@" + emailDomain;
         var email_rule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-        if (!email_id || !email_domain) {
+        if (!emailId || !emailDomain) {
             alert("이메일을 입력해주세요");
             return false;
         }
@@ -76,12 +76,24 @@
             alert("비밀번호가 일치하지 않습니다.");
             return false;
         }
+        var inputElement = document.getElementById("userMbti");
+        var inputValue = inputElement.value.toUpperCase(); // 입력된 문자열을 대문자로 변환
+
+        // 정규표현식으로 유효성 검사
+        var validPattern = /^[EI][NS][FT][PJ]$/;
+
+        if (inputValue.length !== 4 || !validPattern.test(inputValue)) {
+            alert("올바른 MBTI를 입력해주세요.");
+            return false;
+        }
+
+  
 
         return true;
     }
 
     function setEmailDomain(domain) {
-        document.getElementById("email_domain").value = domain;
+        document.getElementById("emailDomain").value = domain;
     }
 </script>
 

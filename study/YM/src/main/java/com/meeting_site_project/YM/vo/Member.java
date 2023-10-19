@@ -9,6 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 
+import java.sql.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +24,13 @@ public class Member {
     private int userAdmin;
     private String birthday;
     private String nickName;
+<<<<<<< HEAD
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date sign_date;
+=======
+    private String emailId;
+    private String emailDomain;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private Date regDate;
+>>>>>>> dcdbe9bb468d6eb0533d22a7521a42ba329d0a03
 }
