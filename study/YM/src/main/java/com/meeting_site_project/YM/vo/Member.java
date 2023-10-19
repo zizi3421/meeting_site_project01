@@ -1,8 +1,11 @@
 package com.meeting_site_project.YM.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
 
 @Data
 @AllArgsConstructor
@@ -17,4 +20,8 @@ public class Member {
     private int userAdmin;
     private String birthday;
     private String nickName;
+    private String emailId;
+    private String emailDomain;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private Date regDate;
 }
