@@ -9,8 +9,8 @@ public class JoinMember {
     private String userPicture;
     private String userMbti;
     private String userPassword;
-    private String confirmUserPassword;
-    private String userInfo;
     private String birthday;
     private String nickName;
+    private String emailId;
+    private String emailDomain;
 }
