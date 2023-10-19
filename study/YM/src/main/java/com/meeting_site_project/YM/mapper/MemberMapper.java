@@ -15,5 +15,11 @@ public interface MemberMapper {
 
     public void insertMember(JoinMember joinMember);
 
+    public Member selectByIdPassword(String userId, String userPassword);
+
     public Member selectById(String userId);
+
+    public Member selectByNickName(String nickName);
+
+    public Member selectByEmail(String emailId, String emailDomain);
 }
