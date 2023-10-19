@@ -17,9 +17,17 @@ public interface MemberMapper {
 
     public void insertMember(JoinMember joinMember);
 
+    public Member selectByIdPassword(String userId, String userPassword);
+
     public Member selectById(String userId);
 
+<<<<<<< HEAD
     public List<Member> getMemberList();  //회원 전체 목록 조회
 
     Member selectMemberById(String userId); // 수정을 하기 위한 멤버 조회
+=======
+    public Member selectByNickName(String nickName);
+
+    public Member selectByEmail(String emailId, String emailDomain);
+>>>>>>> c9965d3b08600187281e94b7693021e35be5192e
 }

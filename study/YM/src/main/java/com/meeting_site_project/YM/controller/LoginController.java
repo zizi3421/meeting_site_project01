@@ -17,43 +17,58 @@ import javax.validation.Valid;
 
 @Controller
 public class LoginController {
+
+    // AuthService를 주입받기 위한 필드
     AuthService authService;
+
     @Autowired
     public LoginController(AuthService authService) {
         this.authService = authService;
     }
 
+    // 세션 관련 상수 클래스
     public abstract class SessionConst {
         public static final String LOGIN_MEMBER = "loginMember";
-
     }
 
+    // 로그인 폼을 불러오는 요청에 대한 핸들러 메서드
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginInfo") LoginCommand loginCommand, HttpServletRequest request, HttpSession session) {
         AuthInfo authInfo = (AuthInfo) session.getAttribute(SessionConst.LOGIN_MEMBER);
+
+        // 이미 로그인한 상태면 홈 화면으로 이동
         if(authInfo != null) {
             return "home";
         }
+
+        // 로그인 폼 화면으로 이동
         return "login/loginForm";
     }
 
+    // 로그인 성공 시 처리하는 요청에 대한 핸들러 메서드
     @PostMapping("/login")
     public String loginSuccess(@Valid @ModelAttribute("loginInfo") LoginCommand loginCommand, BindingResult bindingResult, HttpSession session, HttpServletRequest request) {
+
+        // 폼 유효성 검사 에러가 있는지 확인
         if(bindingResult.hasErrors()) {
-            return "login/loginForm";
+            return "login/loginForm"; // 에러가 있으면 로그인 폼으로 이동
         }
 
-        Member member = authService.selectById(loginCommand.getUserId(), loginCommand.getUserPassword());
+        // 사용자의 아이디와 비밀번호로 회원 정보 조회
+        Member member = authService.selectByIdPassword(loginCommand.getUserId(), loginCommand.getUserPassword());
+
+        // 회원 정보가 없으면 로그인 실패 처리
         if(member==null) {
             bindingResult.reject("loginfail", "아이디 또는 비밀번호를 확인해주세요.");
-            return "login/loginForm";
+            return "login/loginForm"; // 로그인 폼으로 이동
         }
 
+        // 인증 정보 생성
         AuthInfo authInfo = new AuthInfo(member.getUserId(), member.getUserPassword(), member.getUserName(), member.getNickName(), member.getUserPicture(), member.getUserAdmin());
+
         session = request.getSession(true);
-        session.setAttribute(SessionConst.LOGIN_MEMBER, authInfo);
+        session.setAttribute(SessionConst.LOGIN_MEMBER, authInfo); // 세션에 인증 정보 저장
 
-
-        return "home";
+        return "home"; // 홈 화면으로 이동
     }
 }
