@@ -5,6 +5,8 @@ import com.meeting_site_project.YM.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface MemberMapper {
 
@@ -16,4 +18,8 @@ public interface MemberMapper {
     public void insertMember(JoinMember joinMember);
 
     public Member selectById(String userId);
+
+    public List<Member> getMemberList();  //회원 전체 목록 조회
+
+    Member selectMemberById(String userId); // 수정을 하기 위한 멤버 조회
 }

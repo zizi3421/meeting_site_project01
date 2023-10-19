@@ -12,3 +12,13 @@ emailId nvarchar2(50),
 emailDomain nvarchar2(50),
 signDate date default sysdate
 );
+
+CREATE TABLE group (
+groupId nvarchar2(30) PRIMARY KEY,
+sidoCode nvarchar2(30),
+sigoonCode nvarchar2(30),
+groupName nvarchar2(30),
+groupInfo nvarchar2(100),
+groupNumberOfPeople number,
+group_picture nvarchar2(100)
+);
