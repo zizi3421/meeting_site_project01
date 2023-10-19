@@ -13,7 +13,22 @@
         INSERT INTO member VALUES (#{userId}, #{userName}, #{userPicture}, #{userMbti}, #{userPassword}, '', 0, #{birthday}, #{nickName}, #{emailId}, #{emailDomain}, sysdate)
     </insert>
 
+    <select id="selectByIdPassword" resultType="member" parameterType="String">
+        SELECT * FROM member WHERE userID=#{userId} AND userPassword = #{userPassword}
+    </select>
+
     <select id="selectById" resultType="member" parameterType="String">
         SELECT * FROM member WHERE userID=#{userId}
     </select>
+
+    <select id="selectByNickName" resultType="member" parameterType="String">
+        SELECT * FROM member WHERE nickName=#{nickName}
+    </select>
+
+    <select id="selectByEmail" resultType="member" parameterType="String">
+        SELECT * FROM member WHERE emailId=#{emailId} AND emailDomain=#{emailDomain}
+    </select>
+
+
+
 </mapper>
