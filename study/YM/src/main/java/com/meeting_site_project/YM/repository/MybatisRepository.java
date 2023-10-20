@@ -32,7 +32,7 @@ public class MybatisRepository implements Repository {
         return memberMapper.selectById(userId);
     }
 
-<<<<<<< HEAD
+
     public List<Member> getMemberList() { // 전체 회원 조회를 위한 (관리자)
         return memberMapper.getMemberList();
     }
@@ -41,8 +41,8 @@ public class MybatisRepository implements Repository {
         return memberMapper.selectMemberById(userId);
 
     }
-}
-=======
+
+
     // 닉네임을 받아서 해당하는 회원을 조회하는 메서드
     public Member selectByNickName(String nickName) {
         return memberMapper.selectByNickName(nickName);
@@ -53,4 +53,4 @@ public class MybatisRepository implements Repository {
         return memberMapper.selectByEmail(emailId, emailDomain);
     }
 }
->>>>>>> c9965d3b08600187281e94b7693021e35be5192e
+

@@ -45,7 +45,6 @@ public class ManagerController {
     public String editMemberPage(@RequestParam("userid") String userId, Model model) {
         // 특정 회원을 수정하는 페이지로 이동하는 로직을 구현
         // 데이터베이스에서 userId에 해당하는 회원 정보를 가져오는 로직을 구현
-        System.out.println(userId);
 
         Member member = checkService.selectMemberById(userId);
 

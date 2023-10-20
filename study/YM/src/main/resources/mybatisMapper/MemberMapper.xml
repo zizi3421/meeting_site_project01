@@ -29,6 +29,15 @@
         SELECT * FROM member WHERE emailId=#{emailId} AND emailDomain=#{emailDomain}
     </select>
 
+    <!-- 관리자를 위한 쿼리 문 -->
+
+    <select id="getMemberList" resultType="member"> <!-- 전체 회원 조회를 위한 SELECT문 (관리자) -->
+        SELECT * FROM member
+    </select>
+
+    <select id="selectMemberById" resultType="member" parameterType="String"> <!-- 회원 수정을 위한 SELECT문 (관리자) -->
+        SELECT * FROM member WHERE userID=#{userId}
+    </select>
 
 
 </mapper>
