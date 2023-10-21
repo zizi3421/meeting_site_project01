@@ -26,4 +26,7 @@ public class CheckService {
         return mybatisRepository.selectMemberById(userId);
     }
 
+
+
+
 }

@@ -5,6 +5,7 @@ import com.meeting_site_project.YM.vo.Member;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
@@ -30,4 +31,7 @@ public interface MemberMapper {
 
     public Member selectByEmail(String emailId, String emailDomain);
 
+    public void updateMemberAdmin(HashMap<String, Object> parameters);
+
+    public void deleteMemberById(String userId);
 }

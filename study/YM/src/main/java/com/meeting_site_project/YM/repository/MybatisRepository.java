@@ -5,6 +5,7 @@ import com.meeting_site_project.YM.vo.JoinMember;
 import com.meeting_site_project.YM.vo.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
 
 @org.springframework.stereotype.Repository
@@ -39,7 +40,6 @@ public class MybatisRepository implements Repository {
 
     public Member selectMemberById(String userId) {
         return memberMapper.selectMemberById(userId);
-
     }
 
 
@@ -51,6 +51,15 @@ public class MybatisRepository implements Repository {
     // 이메일 아이디와 도메인을 받아서 해당하는 회원을 조회하는 메서드
     public Member selectByEmail(String emailId, String emailDomain) {
         return memberMapper.selectByEmail(emailId, emailDomain);
+    }
+
+    public void updateMemberAdmin(HashMap<String, Object> parameters) {
+        memberMapper.updateMemberAdmin(parameters);
+    }
+
+    public void deleteMemberById(String userId) {
+        memberMapper.deleteMemberById(userId);
+
     }
 }
 
